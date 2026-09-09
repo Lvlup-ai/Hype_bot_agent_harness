@@ -1,0 +1,23 @@
+# Everything pre-declared for a run. Nothing here changes while a run is going.
+
+phases: [rules]
+
+loop:
+  max_iterations: 7          # proposals per phase, counting refused and failed ones
+  max_failures: 1            # one NO_GO or failure abandons the iteration
+  convergence_window: 10
+  convergence_threshold_pct: 1.0
+
+acceptance:                  # a rule is accepted when both hold
+  precision_min: 0.8
+  flagged_min: 2
+
+budget:
+  total: 12
+  costs: {in_scope: 1, adjacent: 2, off_topic: 3}
+  tracks: [age, email, signup_date]   # each must get an in-scope rule before any off-topic one
+
+review:
+  max_retries: 2
+
+ledger_events: [gate, run, report, retry, escalate]

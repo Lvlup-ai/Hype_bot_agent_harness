@@ -1,0 +1,56 @@
+# Do the briefs tell the truth about this example?
+# Run from the repository root:
+#   python -m agent_harness.prompt_tests examples/dataset_audit/prompt_checks.yaml --base .
+# Paths are relative to --base; module references are imported from there.
+
+briefs:
+  examples/dataset_audit/briefs/proposer.md:
+    name_all:
+      - items: examples.dataset_audit.data:COLUMNS
+        label: columns
+      - items: examples.dataset_audit.rules:OPERATORS
+        label: operators
+    state_count:
+      - value: examples.dataset_audit.data:COLUMNS
+        noun: columns
+      - value: examples.dataset_audit.rules:OPERATORS
+        noun: operators
+    quote:
+      - value: examples/dataset_audit/config.yaml#budget.costs.in_scope
+        prefix: "in-scope rule costs "
+      - value: examples/dataset_audit/config.yaml#budget.costs.adjacent
+        prefix: "adjacent one costs "
+      - value: examples/dataset_audit/config.yaml#budget.costs.off_topic
+        prefix: "off-topic one costs "
+      - value: examples/dataset_audit/config.yaml#acceptance.precision_min
+        prefix: "precision of at least "
+      - value: examples/dataset_audit/config.yaml#acceptance.flagged_min
+        prefix: "at least "
+        suffix: " flagged rows"
+    forbid:
+      - "held-out rows"
+      - "four operators"
+    require:
+      - "in-sample"
+      - "never write anywhere else"
+
+  examples/dataset_audit/briefs/auditor.md:
+    name_all:
+      - items: examples.dataset_audit.data:COLUMNS
+        label: columns
+      - items: examples.dataset_audit.rules:OPERATORS
+        label: operators
+    state_count:
+      - value: examples.dataset_audit.rules:OPERATORS
+        noun: operators
+    require:
+      - "GO or NO_GO, nothing else"
+
+  examples/dataset_audit/briefs/reviewer.md:
+    quote:
+      - value: examples/dataset_audit/config.yaml#review.max_retries
+        prefix: "capped at "
+        suffix: " per run"
+    require:
+      - "never how"
+      - "PASS, RETRY, ESCALATE"

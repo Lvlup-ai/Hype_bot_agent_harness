@@ -91,6 +91,7 @@ class FailureKind(str, Enum):
     RUNTIME_ERROR = "runtime_error"    # the proposal crashed when measured
     JURISDICTION = "jurisdiction"      # the agent wrote outside its jurisdiction
     INVALID_OUTPUT = "invalid_output"  # the deliverable failed its contract
+    REFUSED = "refused"                # the harness refused the proposal (budget, drift)
 
 
 class Verdict(str, Enum):
