@@ -1,0 +1,33 @@
+# Secrets and credentials — never committed
+.env
+.env.*
+*.pem
+*.key
+*.pub
+*.p12
+*.pfx
+id_*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Run artefacts and data — local only
+runs/
+data/
+*.parquet
+*.log
+
+# Editor and OS
+.DS_Store
+.idea/
+.vscode/
+.claude/settings.local.json

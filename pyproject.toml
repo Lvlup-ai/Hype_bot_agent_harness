@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-harness"
+version = "0.0.1"
+description = "A deterministic harness for orchestrating LLM agents: state machine, write jurisdiction, quotas, versioned contracts, tested prompts."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.13"
+dependencies = [
+    "pyyaml>=6",
+    "pydantic>=2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+]
+
+[tool.setuptools.packages.find]
+include = ["agent_harness*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
